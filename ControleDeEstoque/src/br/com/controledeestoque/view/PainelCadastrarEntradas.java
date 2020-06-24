@@ -12,7 +12,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-import br.com.controledeestoque.model.OutroDAO;
+import br.com.controledeestoque.model.EntradaDAO;
+import br.com.controledeestoque.model.ProdutoDAO;
 
 import java.awt.Font;
 
@@ -22,11 +23,15 @@ public class PainelCadastrarEntradas extends JPanel {
 	private JLabel lblQuantidade;
 	private JComboBox<Object> comboBox;
 	private JButton btnArmazenar;
+	public ProdutoDAO p;
+	public EntradaDAO en;
 
 	/**
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelCadastrarEntradas() {
+		p = new ProdutoDAO();
+		en = new EntradaDAO();
 		inicializar();
 		definirEventos();
 
@@ -39,7 +44,6 @@ public class PainelCadastrarEntradas extends JPanel {
 		comboBox = new JComboBox();
 		textQuantidade = new JTextField();
 		btnArmazenar = new JButton("Armazenar");
-		OutroDAO c = new OutroDAO();
 
 		// ajuste de tamanho e definição do layout
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -65,7 +69,7 @@ public class PainelCadastrarEntradas extends JPanel {
 
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Selecione um produto" }));
 		// Adicionando itens ao ComboBox
-		Object[] vetor = c.listar();
+		Object[] vetor = p.listarProdutos();
 		for (int i = 0; i < vetor.length; i++) {
 			comboBox.addItem(vetor[i]);
 		}
@@ -76,17 +80,24 @@ public class PainelCadastrarEntradas extends JPanel {
 		btnArmazenar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Recebe o produto e a quantidade e adiciona na tabela entrada no BD
-				 */
-				String descricao = (String) comboBox.getSelectedItem();
+				
+				 // Recebe o produto e a quantidade e adiciona na tabela entrada no BD				 
+				String nome = (String) comboBox.getSelectedItem();
 				String quantidade = textQuantidade.getText();
 
-				if (descricao == "Selecione um produto" || "".equals(quantidade)) {
+				if (nome == "Selecione um produto" || "".equals(quantidade)) {
 					JOptionPane.showMessageDialog(btnArmazenar, "Selecione um produto e adicione a quantidade");
 				} else {
-					OutroDAO c = new OutroDAO();
-					c.Entradas(descricao, quantidade);
+
+					p.setQuantidade(Integer.parseInt(quantidade));
+					p.setNome(nome);
+					en.setCodigoProduto((int) p.listarCodigo());
+					System.out.println(p.update());
+					en.setQuantidadeEntrada(Integer.parseInt(quantidade));
+
+					System.out.println(en.insert());
+
+					// o.Entradas(descricao, quantidade);
 					JOptionPane.showMessageDialog(btnArmazenar, "Armazenado!");
 					textQuantidade.setText("");
 					comboBox.requestFocusInWindow();

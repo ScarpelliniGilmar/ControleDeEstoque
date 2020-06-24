@@ -12,25 +12,25 @@ create table usuarios(
 
 create table produtos (
 codigo_produto int IDENTITY (1,1) primary key,
-descricao_produto varchar(50),
+nome_produto varchar(50),
 valor_produto money,
-quantidade int
+quantidade_produto int
 )
 go
 
 create table entradas (
-codigo_entradas int IDENTITY (1,1) primary key,
+codigo_entrada int IDENTITY (1,1) primary key,
 codigo_produto int,
-quantidade int,
-data date
+quantidade_entrada int,
+data_entrada date
 )
 go
 
 create table vendas (
 codigo_venda int,
-descricao_produto varchar(50),
+nome_produto varchar(50),
 quantidade int,
-valor money,
-data date
+valor_produto money,
+data_venda date
 )
 go

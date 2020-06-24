@@ -5,11 +5,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.DecimalFormat;
 import java.util.Vector;
-
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import br.com.controledeestoque.controller.BD;
 
 public class MyModel {
 	private static DefaultTableModel tableModel;
@@ -70,4 +66,5 @@ public class MyModel {
 		}
 		return tableModel;
 	}
+
 }
