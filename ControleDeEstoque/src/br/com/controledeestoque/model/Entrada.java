@@ -2,7 +2,7 @@ package br.com.controledeestoque.model;
 
 public class Entrada {
 
-	private int codigoEntrada, codigoProduto, quantidade;
+	private int codigoEntrada, codigoProduto, quantidadeEntrada;
 	private String data;
 
 	public int getCodigoEntrada() {
@@ -21,12 +21,12 @@ public class Entrada {
 		this.codigoProduto = codigoProduto;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
+	public int getQuantidadeEntrada() {
+		return quantidadeEntrada;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setQuantidadeEntrada(int quantidadeEntrada) {
+		this.quantidadeEntrada = quantidadeEntrada;
 	}
 
 	public String getData() {

@@ -1,6 +1,9 @@
 package br.com.controledeestoque.model;
 
 public class Venda {
+	
+	
+	
 	private int codigoVenda, quantidade;
 	private String nomeProduto, data;
 	private double valor;

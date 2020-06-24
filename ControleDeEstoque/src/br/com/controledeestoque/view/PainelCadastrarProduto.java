@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import br.com.controledeestoque.model.ProdutoDAO;
-import br.com.controledeestoque.model.OutroDAO;
 import br.com.controledeestoque.model.Produto;
 
 public class PainelCadastrarProduto extends JPanel {

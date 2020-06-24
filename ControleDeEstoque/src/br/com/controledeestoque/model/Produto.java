@@ -6,12 +6,14 @@ public class Produto {
 	private String nome;
 	private double valor;
 
-	public int getCodigo() {
+	
+
+	public int getCodigoProduto() {
 		return codigoProduto;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigoProduto = codigo;
+	public void setCodigoProduto(int codigoProduto) {
+		this.codigoProduto = codigoProduto;
 	}
 
 	public String getNome() {
@@ -34,8 +36,8 @@ public class Produto {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setQuantidade(int quantidade2) {
+		this.quantidade = quantidade2;
 	}
 
 }

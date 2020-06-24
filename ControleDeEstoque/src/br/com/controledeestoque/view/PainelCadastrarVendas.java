@@ -18,7 +18,9 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.controledeestoque.controller.BD;
 import br.com.controledeestoque.controller.MyModel;
-import br.com.controledeestoque.model.OutroDAO;
+import br.com.controledeestoque.model.ProdutoDAO;
+import br.com.controledeestoque.model.Venda;
+import br.com.controledeestoque.model.VendaDAO;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -33,6 +35,8 @@ public class PainelCadastrarVendas extends JPanel {
 	private double subtotal, total;
 	private JLabel lblCodigo;
 	public static BD bd;
+	public static VendaDAO v;
+	public static ProdutoDAO p;
 	private JComboBox comboBox;
 	private JButton btnAdicionar;
 	private JButton btnFinalizar;
@@ -47,6 +51,8 @@ public class PainelCadastrarVendas extends JPanel {
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelCadastrarVendas() {
+		v = new VendaDAO();
+		p = new ProdutoDAO();
 		inicializar();
 		definirEventos();
 
@@ -57,7 +63,7 @@ public class PainelCadastrarVendas extends JPanel {
 		bd = new BD();
 		bd.getConnection();
 		lblTitulo = new JLabel("Realizar Venda");
-		OutroDAO c = new OutroDAO();
+
 		comboBox = new JComboBox();
 		comboBox.setEnabled(false);
 		btnAdicionar = new JButton("Adicionar Produto");
@@ -127,16 +133,16 @@ public class PainelCadastrarVendas extends JPanel {
 				tfQuantidade.setEnabled(true);
 				lblTotal.setEnabled(true);
 				btnAdicionar.setEnabled(true);
-				lblCodigo.setText("" + (OutroDAO.listarUltimoCodigo() + 1));
+				lblCodigo.setText("" + (VendaDAO.listarUltimoCodigo() + 1));
 				model = MyModel.getModel(bd,
-						"select codigo_venda as 'Código', descricao_produto as 'Produto', quantidade as 'Quantidade', valor as 'Valor Unitário' from vendas where codigo_venda ="
+						"select codigo_venda as 'Código', nome_produto as 'Produto', quantidade as 'Quantidade', valor_produto as 'Valor Unitário' from vendas where codigo_venda ="
 								+ lblCodigo.getText());
+
 				table.setModel(model);
 
 				// INICIO DA COMBO BOX
 				comboBox.setModel(new DefaultComboBoxModel(new String[] { "Selecione um produto" }));
-				OutroDAO t = new OutroDAO();
-				Object[] vetor = OutroDAO.listar();
+				Object[] vetor = ProdutoDAO.listarProdutos();
 
 				for (int i = 0; i < vetor.length; i++) {
 					comboBox.addItem(vetor[i]);
@@ -149,10 +155,10 @@ public class PainelCadastrarVendas extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					OutroDAO c = new OutroDAO();
+
 					String descricao = (String) comboBox.getSelectedItem(); // pega o item selecionado
 					int quantidade = Integer.parseInt(tfQuantidade.getText()); // pega a quantidade digitada
-					double valor = (double) c.listarValor(descricao); // recebe o valor do produto da tabela
+					double valor = (double) p.listarValor(descricao); // recebe o valor do produto da tabela
 					codigo = Integer.parseInt(lblCodigo.getText());
 
 					if (descricao == "Selecione um produto") {
@@ -161,9 +167,9 @@ public class PainelCadastrarVendas extends JPanel {
 						JOptionPane.showMessageDialog(btnAdicionar, "Adicione a quantidade");
 					} else {
 
-						if (c.Vendas(codigo, descricao, quantidade, subtotal) == true) {
+						if (v.Vendas(codigo, descricao, quantidade, subtotal) == true) {
 
-							lblTotal.setText("TOTAL R$ " + OutroDAO.Total(codigo));
+							lblTotal.setText("TOTAL R$ " + v.Total(codigo));
 
 							JOptionPane.showMessageDialog(btnAdicionar, "Produto Adicionado!");
 							tfQuantidade.setText("");
@@ -195,7 +201,6 @@ public class PainelCadastrarVendas extends JPanel {
 					comboBox.setEnabled(false);
 					btnAdicionar.setEnabled(false);
 					table.setEnabled(false);
-					;
 					lblTotal.setText("");
 
 				}
@@ -210,7 +215,7 @@ public class PainelCadastrarVendas extends JPanel {
 	public void listarTabela() {
 
 		model = MyModel.getModel(bd,
-				"select codigo_venda as 'Código', descricao_produto as 'Produto', quantidade as 'Quantidade', valor as 'Valor Unitário' from vendas where codigo_venda ="
+				"select codigo_venda as 'Código', nome_produto as 'Produto', quantidade as 'Quantidade', valor_produto as 'Valor Unitário' from vendas where codigo_venda ="
 						+ lblCodigo.getText());
 		table.setModel(model);
 

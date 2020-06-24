@@ -1,7 +1,10 @@
 package br.com.controledeestoque.testes;
 
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
+import br.com.controledeestoque.controller.MyModel;
 import br.com.controledeestoque.model.UsuarioDAO;
 import br.com.controledeestoque.view.Menu;
 
@@ -23,5 +26,8 @@ public class UsuarioLogar {
 			JOptionPane.showMessageDialog(null, "Login Invalido!");
 		}
 
+		
+			
+		}
+	
 	}
-}
