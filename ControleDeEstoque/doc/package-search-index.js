@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.com.controledeestoque.controle"},{"l":"br.com.controledeestoque.modelo"},{"l":"br.com.controledeestoque.visual"}]
