@@ -1,4 +1,4 @@
-package br.com.controledeestoque.controle;
+package br.com.controledeestoque.controller;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.controledeestoque.controle.BD;
+import br.com.controledeestoque.controller.BD;
 
 public class MyModel {
 	private static DefaultTableModel tableModel;

@@ -1,9 +1,11 @@
-package br.com.controledeestoque.controle;
+package br.com.controledeestoque.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClasseDeComunicacao {
+import br.com.controledeestoque.controller.BD;
+
+public class OutroDAO {
 
 	private static int quantidade;
 	private static int estoque;
@@ -15,24 +17,10 @@ public class ClasseDeComunicacao {
 	private static ArrayList teste = new ArrayList();
 	private static Object[] vetor = null;
 
-	public ClasseDeComunicacao() {
+	public OutroDAO() {
 	}
 
-	/**
-	 * Insere um novo produto no banco de Dados
-	 * 
-	 * @param descricao  - recebe o nome do produto
-	 * @param valor      - recebe o valor deste produto
-	 * @param quantidade - recebe a quantidade de produtos
-	 */
-	public void Produtos(String descricao, String valor, String quantidade) {
-		BD bd = new BD();
-		bd.getConnection();
-
-		String insert = "insert produtos values('" + descricao + "'," + valor + "," + quantidade + ")";
-		ClasseDeComunicacao e = new ClasseDeComunicacao();
-		e.executarBD(insert);
-	}
+	
 
 	/**
 	 * Insere novos dados na Tabela Entradas e Atualiza a tabela Produtos
@@ -59,10 +47,10 @@ public class ClasseDeComunicacao {
 		String inserir = "insert into entradas values(" + codigo + "," + quantidade + ",CURRENT_TIMESTAMP)";
 		String atualizar = "update produtos set quantidade = quantidade + " + quantidade + " where codigo_produto ="
 				+ codigo + "";
-		ClasseDeComunicacao e = new ClasseDeComunicacao();
+		OutroDAO e = new OutroDAO();
 		e.executarBD(inserir);
 
-		ClasseDeComunicacao f = new ClasseDeComunicacao();
+		OutroDAO f = new OutroDAO();
 		f.executarBD(atualizar);
 	}
 
@@ -104,10 +92,10 @@ public class ClasseDeComunicacao {
 			String atualizar = "update produtos set quantidade = quantidade - " + quantidade2
 					+ " where codigo_produto =" + codigo_produto + "";
 
-			ClasseDeComunicacao e = new ClasseDeComunicacao();
+			OutroDAO e = new OutroDAO();
 			e.executarBD(inserir);
 
-			ClasseDeComunicacao f = new ClasseDeComunicacao();
+			OutroDAO f = new OutroDAO();
 			f.executarBD(atualizar);
 
 			return true;

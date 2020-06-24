@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,11 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import br.com.controledeestoque.controle.ClasseDeComunicacao;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import br.com.controledeestoque.model.OutroDAO;
+
 import java.awt.Font;
 
 public class PainelCadastrarEntradas extends JPanel {
@@ -37,7 +39,7 @@ public class PainelCadastrarEntradas extends JPanel {
 		comboBox = new JComboBox();
 		textQuantidade = new JTextField();
 		btnArmazenar = new JButton("Armazenar");
-		ClasseDeComunicacao c = new ClasseDeComunicacao();
+		OutroDAO c = new OutroDAO();
 
 		// ajuste de tamanho e definição do layout
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -83,7 +85,7 @@ public class PainelCadastrarEntradas extends JPanel {
 				if (descricao == "Selecione um produto" || "".equals(quantidade)) {
 					JOptionPane.showMessageDialog(btnArmazenar, "Selecione um produto e adicione a quantidade");
 				} else {
-					ClasseDeComunicacao c = new ClasseDeComunicacao();
+					OutroDAO c = new OutroDAO();
 					c.Entradas(descricao, quantidade);
 					JOptionPane.showMessageDialog(btnArmazenar, "Armazenado!");
 					textQuantidade.setText("");

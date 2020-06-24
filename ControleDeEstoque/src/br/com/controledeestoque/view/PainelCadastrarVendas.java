@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import br.com.controledeestoque.controle.BD;
-import br.com.controledeestoque.controle.ClasseDeComunicacao;
-import br.com.controledeestoque.controle.MyModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -18,6 +15,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+
+import br.com.controledeestoque.controller.BD;
+import br.com.controledeestoque.controller.MyModel;
+import br.com.controledeestoque.model.OutroDAO;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.Component;
@@ -55,7 +57,7 @@ public class PainelCadastrarVendas extends JPanel {
 		bd = new BD();
 		bd.getConnection();
 		lblTitulo = new JLabel("Realizar Venda");
-		ClasseDeComunicacao c = new ClasseDeComunicacao();
+		OutroDAO c = new OutroDAO();
 		comboBox = new JComboBox();
 		comboBox.setEnabled(false);
 		btnAdicionar = new JButton("Adicionar Produto");
@@ -125,7 +127,7 @@ public class PainelCadastrarVendas extends JPanel {
 				tfQuantidade.setEnabled(true);
 				lblTotal.setEnabled(true);
 				btnAdicionar.setEnabled(true);
-				lblCodigo.setText("" + (ClasseDeComunicacao.listarUltimoCodigo() + 1));
+				lblCodigo.setText("" + (OutroDAO.listarUltimoCodigo() + 1));
 				model = MyModel.getModel(bd,
 						"select codigo_venda as 'Código', descricao_produto as 'Produto', quantidade as 'Quantidade', valor as 'Valor Unitário' from vendas where codigo_venda ="
 								+ lblCodigo.getText());
@@ -133,8 +135,8 @@ public class PainelCadastrarVendas extends JPanel {
 
 				// INICIO DA COMBO BOX
 				comboBox.setModel(new DefaultComboBoxModel(new String[] { "Selecione um produto" }));
-				ClasseDeComunicacao t = new ClasseDeComunicacao();
-				Object[] vetor = ClasseDeComunicacao.listar();
+				OutroDAO t = new OutroDAO();
+				Object[] vetor = OutroDAO.listar();
 
 				for (int i = 0; i < vetor.length; i++) {
 					comboBox.addItem(vetor[i]);
@@ -147,7 +149,7 @@ public class PainelCadastrarVendas extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					ClasseDeComunicacao c = new ClasseDeComunicacao();
+					OutroDAO c = new OutroDAO();
 					String descricao = (String) comboBox.getSelectedItem(); // pega o item selecionado
 					int quantidade = Integer.parseInt(tfQuantidade.getText()); // pega a quantidade digitada
 					double valor = (double) c.listarValor(descricao); // recebe o valor do produto da tabela
@@ -161,7 +163,7 @@ public class PainelCadastrarVendas extends JPanel {
 
 						if (c.Vendas(codigo, descricao, quantidade, subtotal) == true) {
 
-							lblTotal.setText("TOTAL R$ " + ClasseDeComunicacao.Total(codigo));
+							lblTotal.setText("TOTAL R$ " + OutroDAO.Total(codigo));
 
 							JOptionPane.showMessageDialog(btnAdicionar, "Produto Adicionado!");
 							tfQuantidade.setText("");

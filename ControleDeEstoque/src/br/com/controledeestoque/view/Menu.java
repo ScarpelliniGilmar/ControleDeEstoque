@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -11,7 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import br.com.controledeestoque.controle.BD;
+
+import br.com.controledeestoque.controller.BD;
 
 public class Menu extends JFrame {
 

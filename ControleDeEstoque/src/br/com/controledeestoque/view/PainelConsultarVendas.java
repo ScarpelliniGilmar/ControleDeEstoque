@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -9,7 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import br.com.controledeestoque.controle.MyModel;
+
+import br.com.controledeestoque.controller.MyModel;
 
 public class PainelConsultarVendas extends JPanel {
 	private JTextField tfLocalizar;

@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.Font;
 

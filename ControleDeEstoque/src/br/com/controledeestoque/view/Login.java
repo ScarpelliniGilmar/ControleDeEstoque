@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import br.com.controledeestoque.modelo.Usuario;
+import br.com.controledeestoque.model.UsuarioDAO;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Tela de Login
  * 
  * @author Gilmar
- * Sistema de Controle de Estoque relação com o Banco de dados SQL Server
  * @version 0.1
  *
  */
@@ -62,7 +62,7 @@ public class Login extends JFrame {
 		lblEmail = new JLabel("E-mail:");
 		lblSenha = new JLabel("Senha:");
 		textEmail = new JTextField();
-		textSenha = new JPasswordField();
+		textSenha = new JPasswordField();		
 		btnCancelar = new JButton("Cancelar");
 		btnEntrar = new JButton("Entrar");
 		contentPane = new JPanel();
@@ -104,16 +104,21 @@ public class Login extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Usuario u = new Usuario();
-				boolean r = u.validar(textEmail.getText(), new String(textSenha.getPassword()));
-				if (r) {
+				UsuarioDAO dao = new UsuarioDAO();
+				dao.setEmail(textEmail.getText());
+
+				String password = new String(textSenha.getPassword()); // convert char do password em String
+				dao.setSenha(password);
+
+				if (dao.logar()) {
 					// abrir menu
 					Menu m = new Menu();
 					m.setVisible(true);
 					setVisible(false);
 
-				} else
-					JOptionPane.showMessageDialog(btnEntrar, "Usuario inválido!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Login Invalido!");
+				}
 
 			}
 		});
@@ -124,6 +129,19 @@ public class Login extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		});
+		
+		/**
+		 * Ao pressionar o botão Enter aciona o btn_entrar
+		 */
+		textSenha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {				
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						btnEntrar.doClick();
+					}
+				
 			}
 		});
 

@@ -1,4 +1,4 @@
-package br.com.controledeestoque.controle;
+package br.com.controledeestoque.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

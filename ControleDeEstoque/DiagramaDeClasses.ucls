@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="br.com.controledeestoque.controle.ClasseDeComunicacao" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/controle/ClasseDeComunicacao.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="br.com.controledeestoque.model.OutroDAO" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/model/OutroDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="213" y="346"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -11,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="br.com.controledeestoque.controle.BD" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/controle/BD.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="br.com.controledeestoque.controller.BD" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/controller/BD.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1747" y="97"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -20,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="br.com.controledeestoque.controle.MyModel" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/controle/MyModel.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="br.com.controledeestoque.controller.MyModel" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/controller/MyModel.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="464" y="201"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -29,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="br.com.controledeestoque.modelo.Usuario" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/modelo/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="br.com.controledeestoque.model.Usuario" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/model/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="237" width="179" x="368" y="337"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -38,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="br.com.controledeestoque.visual.Login" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/Login.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="br.com.controledeestoque.view.Login" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/Login.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="668" y="306"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="br.com.controledeestoque.visual.Menu" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="br.com.controledeestoque.view.Menu" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1739" y="466"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,9 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="br.com.controledeestoque.visual.PainelCadastrarEntradas" 
-    project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelCadastrarEntradas.java" binary="false" 
+  <class id="7" language="java" name="br.com.controledeestoque.view.PainelCadastrarEntradas" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelCadastrarEntradas.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1312" y="557"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -67,9 +65,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="br.com.controledeestoque.visual.PainelCadastrarProduto" 
-    project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelCadastrarProduto.java" binary="false" 
+  <class id="8" language="java" name="br.com.controledeestoque.view.PainelCadastrarProduto" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelCadastrarProduto.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1308" y="306"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -78,8 +75,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="br.com.controledeestoque.visual.PainelCadastrarVendas" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelCadastrarVendas.java" binary="false" 
+  <class id="9" language="java" name="br.com.controledeestoque.view.PainelCadastrarVendas" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelCadastrarVendas.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1515" y="400"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -88,10 +85,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="br.com.controledeestoque.visual.PainelConsultarEntradas" 
-    project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelConsultarEntradas.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="br.com.controledeestoque.view.PainelConsultarEntradas" 
+    project="ControleDeEstoque" file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelConsultarEntradas.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1095" y="282"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -99,10 +95,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="br.com.controledeestoque.visual.PainelConsultarProdutos" 
-    project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelConsultarProdutos.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="br.com.controledeestoque.view.PainelConsultarProdutos" 
+    project="ControleDeEstoque" file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelConsultarProdutos.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="846" y="278"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -110,9 +105,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="br.com.controledeestoque.visual.PainelConsultarVendas" 
-    project="ControleDeEstoque" file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelConsultarVendas.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="br.com.controledeestoque.view.PainelConsultarVendas" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelConsultarVendas.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1090" y="558"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -120,9 +115,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="br.com.controledeestoque.visual.PainelInicial" project="ControleDeEstoque" 
-    file="/ControleDeEstoque/src/br/com/controledeestoque/visual/PainelInicial.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="br.com.controledeestoque.view.PainelInicial" project="ControleDeEstoque" 
+    file="/ControleDeEstoque/src/br/com/controledeestoque/view/PainelInicial.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="848" y="484"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -131,17 +125,25 @@
     </display>  
   </class>  
   <association id="14">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="15" name="bd"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="15" name="bd">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="17">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="18" name="bd"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="18" name="bd">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

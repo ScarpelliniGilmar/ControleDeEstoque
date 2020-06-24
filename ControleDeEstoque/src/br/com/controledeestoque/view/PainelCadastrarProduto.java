@@ -1,4 +1,4 @@
-package br.com.controledeestoque.visual;
+package br.com.controledeestoque.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import br.com.controledeestoque.controle.ClasseDeComunicacao;
 import javax.swing.SwingConstants;
+
+import br.com.controledeestoque.model.ProdutoDAO;
+import br.com.controledeestoque.model.OutroDAO;
+import br.com.controledeestoque.model.Produto;
 
 public class PainelCadastrarProduto extends JPanel {
 	private JTextField textDescricao;
@@ -77,11 +80,11 @@ public class PainelCadastrarProduto extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					String descricao = textDescricao.getText();
+					String nome = textDescricao.getText();
 					String valor = textValor.getText();
 					String quantidade = textQuantidade.getText();
 
-					if ("".equals(descricao)) {
+					if ("".equals(nome)) {
 						JOptionPane.showMessageDialog(btnCadastrar, "Adicione o nome o produto");
 					} else if ("".equals(quantidade)) {
 						JOptionPane.showMessageDialog(btnCadastrar, "Adicione a quantidade");
@@ -89,8 +92,13 @@ public class PainelCadastrarProduto extends JPanel {
 						JOptionPane.showMessageDialog(btnCadastrar, "Adicione o valor");
 					} else {
 
-						ClasseDeComunicacao p = new ClasseDeComunicacao();
-						p.Produtos(descricao, valor, quantidade);
+						
+						ProdutoDAO p = new ProdutoDAO();
+						p.setNome(nome);
+						p.setValor(Double.parseDouble(valor));
+						p.setQuantidade(Integer.parseInt(quantidade));					
+						p.insert();						
+						
 						JOptionPane.showMessageDialog(btnCadastrar, "Cadastro Concluído!");
 						textDescricao.setText("");
 						textQuantidade.setText("");

@@ -1,0 +1,23 @@
+insert into usuarios values ('gilmar@gilmar','123')
+
+
+
+insert into produtos values ('Mouse',15,100)
+insert into produtos values ('Teclado',30,100)
+insert into produtos values ('Monitor',650,100)
+insert into produtos values ('Mouse Pad',80,100)
+insert into produtos values ('Gabinete',150,100)
+insert into produtos values ('Placa De Video',750,100)
+insert into produtos values ('Processador',900,100)
+insert into produtos values ('Placa Mãe',250,100)
+insert into produtos values ('Memória Ram',180,100)
+insert into produtos values ('Fonte de Energia',200,100)
+insert into produtos values ('Caixa de Som',40,100)
+
+
+
+
+select *from usuarios
+select * from produtos
+select * from entradas
+select * from vendas
