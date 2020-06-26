@@ -1,5 +1,6 @@
 package br.com.controledeestoque.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -13,6 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.controledeestoque.controller.BD;
+import java.awt.Font;
+import java.awt.Dimension;
+import javax.swing.SpringLayout;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
 
 public class Menu extends JFrame {
 
@@ -51,6 +58,9 @@ public class Menu extends JFrame {
 	 * Método construtor, carrega todos os componentes do layout e eventos
 	 */
 	public Menu() {
+		setSize(new Dimension(1000, 500));
+		setBackground(SystemColor.inactiveCaptionBorder);
+
 		inicializar();
 		definirEventos();
 
@@ -66,32 +76,59 @@ public class Menu extends JFrame {
 
 		// instanciando componentes
 		menuBar = new JMenuBar();
+		menuBar.setBackground(SystemColor.inactiveCaptionBorder);
 		mnArquivo = new JMenu("Arquivo");
+		mnArquivo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnVenda = new JMenu("Venda");
+		mnVenda.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar = new JMenu("Cadastrar");
+		mnCadastrar.setBackground(SystemColor.inactiveCaptionBorder);
+		mnCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnConsultar = new JMenu("Consultar");
+		mnConsultar.setBackground(SystemColor.inactiveCaptionBorder);
+		mnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mntmInicial = new JMenuItem("Tela Inicial");
+		mntmInicial.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmInicial.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmSair = new JMenuItem("Sair");
+		mntmSair.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmSair.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmRealizarVenda = new JMenuItem("Realizar Venda");
+		mntmRealizarVenda.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmRealizarVenda.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmProduto = new JMenuItem("Produto");
+		mntmProduto.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmProduto.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmEntrada = new JMenuItem("Entrada");
+		mntmEntrada.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmEntrada.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmProdutos = new JMenuItem("Produtos");
+		mntmProdutos.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmProdutos.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmVendas = new JMenuItem("Vendas");
+		mntmVendas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmVendas.setBackground(SystemColor.inactiveCaptionBorder);
 		mntmEntradas = new JMenuItem("Entradas");
+		mntmEntradas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		mntmEntradas.setBackground(SystemColor.inactiveCaptionBorder);
 		TelaInicial = new JPanel();
 
 		// ajuste de tamanho e definição do layout
 		setTitle("Controle de Estoque"); // Titulo da tela
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		TelaInicial.setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		TelaInicial.setBackground(SystemColor.inactiveCaptionBorder);
 		setContentPane(TelaInicial);
 		setLocationRelativeTo(null); // Tela Centralizada
+		setResizable(false);// Impede que a tela seje maximizada
+		setType(Type.UTILITY);
+		setPreferredSize(new Dimension(900, 400));
 
 		// define limites de componentes
-		setBounds(100, 100, 597, 455);
+		setBounds(100, 100, 663, 497);
 		setForeground(new Color(0, 102, 153));
-		TelaInicial.setBorder(new EmptyBorder(5, 5, 5, 5));
 		TelaInicial.setLayout(new GridLayout(1, 0, 0, 0));
+		setLocationRelativeTo(null); // Tela Centralizada
+		
 
 		// add componentes
 		menuBar.add(mnArquivo);
@@ -190,7 +227,9 @@ public class Menu extends JFrame {
 		});
 
 		// Abrir Menu setando Painel Inicial
-		PainelInicial i = new PainelInicial();
+		PainelInicial i = new PainelInicial();		
+		i.setAlignmentY(0.0f);
+		i.setAlignmentX(0.0f);
 		atualizarPainel(i);
 	}
 

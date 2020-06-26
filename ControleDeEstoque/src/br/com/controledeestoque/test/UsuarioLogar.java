@@ -1,4 +1,4 @@
-package br.com.controledeestoque.testes;
+package br.com.controledeestoque.test;
 
 import java.sql.SQLException;
 

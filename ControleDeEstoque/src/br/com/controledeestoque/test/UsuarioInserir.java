@@ -1,4 +1,4 @@
-package br.com.controledeestoque.testes;
+package br.com.controledeestoque.test;
 
 import br.com.controledeestoque.model.UsuarioDAO;
 

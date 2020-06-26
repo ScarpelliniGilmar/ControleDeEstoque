@@ -141,7 +141,7 @@ public class ProdutoDAO extends Produto implements DAO { // acessa o banco
 		// executo a ação
 		String sql1 = "select nome_produto from produtos";
 
-		ArrayList lista = new ArrayList();
+		ArrayList<String> lista = new ArrayList<String>();
 		Object[] vetor = null;
 
 		try {
