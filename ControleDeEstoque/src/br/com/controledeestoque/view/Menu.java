@@ -88,10 +88,11 @@ public class Menu extends JFrame {
 		setLocationRelativeTo(null); // Tela Centralizada
 
 		// define limites de componentes
-		setBounds(100, 100, 597, 455);
+		setBounds(100, 100, 795, 568);
 		setForeground(new Color(0, 102, 153));
 		TelaInicial.setBorder(new EmptyBorder(5, 5, 5, 5));
 		TelaInicial.setLayout(new GridLayout(1, 0, 0, 0));
+		setLocationRelativeTo(null); // Tela Centralizada
 
 		// add componentes
 		menuBar.add(mnArquivo);

@@ -55,7 +55,7 @@ public class PainelConsultarVendas extends JPanel {
 		tfLocalizar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				String sql = "select codigo_venda as 'Código da venda', descricao_produto as 'Produto', quantidade as 'Quantidade',valor as 'Valor Unitário', data as 'Data'  from vendas where descricao_produto like '"
+				String sql = "select codigo_venda as 'Código da venda', nome_produto as 'Produto', quantidade as 'Quantidade',valor_produto as 'Valor Unitário', data_venda as 'Data' from vendas where nome_produto like '"
 						+ tfLocalizar.getText() + "%'"; // selecionar tudo que comece com "??"
 				model = MyModel.getModel(Menu.bd, sql);
 				tbVendas.setModel(model);
@@ -69,7 +69,7 @@ public class PainelConsultarVendas extends JPanel {
 	 */
 	private void carregarTabela() {
 		model = MyModel.getModel(Menu.bd,
-				"select codigo_venda as 'Código da venda', descricao_produto as 'Produto', quantidade as 'Quantidade',valor as 'Valor Unitário', data as 'Data' from vendas");
+				"select codigo_venda as 'Código da venda', nome_produto as 'Produto', quantidade as 'Quantidade',valor_produto as 'Valor Unitário', data_venda as 'Data' from vendas");
 		tbVendas.setModel(model);
 		JScrollPane sp = new JScrollPane(tbVendas); // painel de rolagem
 		sp.setBounds(24, 72, 517, 271); // TAMANHO E POSIÇÃO

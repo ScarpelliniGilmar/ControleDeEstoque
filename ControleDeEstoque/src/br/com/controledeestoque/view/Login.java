@@ -70,11 +70,11 @@ public class Login extends JFrame {
 		// ajuste de tamanho e definição do layout
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Login"); // seta o titulo
-		setLocationRelativeTo(null); // Tela Centralizada
+		setTitle("Login"); // seta o titulo		
 		setContentPane(contentPane);
 		textEmail.setColumns(10);
 		contentPane.setLayout(null);
+		
 
 		// define limites de componentes
 		setBounds(100, 100, 427, 291);// seta a posição na tela
@@ -85,6 +85,7 @@ public class Login extends JFrame {
 		btnCancelar.setBounds(114, 176, 89, 23);// seta a posição na tela
 		btnEntrar.setBounds(238, 176, 89, 23);// seta a posição na tela
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null); // Tela Centralizada
 
 		// add componentes
 		contentPane.add(lblEmail);
@@ -117,7 +118,7 @@ public class Login extends JFrame {
 					setVisible(false);
 
 				} else {
-					JOptionPane.showMessageDialog(null, "Login Invalido!");
+					JOptionPane.showMessageDialog(btnEntrar, "Dados inválidos!","",JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			}
