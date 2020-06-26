@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import br.com.controledeestoque.model.ProdutoDAO;
 import br.com.controledeestoque.model.Produto;
+import java.awt.SystemColor;
 
 public class PainelCadastrarProduto extends JPanel {
 	private JTextField textDescricao;
@@ -28,6 +29,7 @@ public class PainelCadastrarProduto extends JPanel {
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelCadastrarProduto() {
+		setBackground(SystemColor.inactiveCaptionBorder);
 		inicializar();
 		definirEventos();
 	}

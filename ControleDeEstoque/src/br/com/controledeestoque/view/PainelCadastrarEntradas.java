@@ -11,11 +11,13 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 import br.com.controledeestoque.model.EntradaDAO;
 import br.com.controledeestoque.model.ProdutoDAO;
 
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class PainelCadastrarEntradas extends JPanel {
 	private JTextField textQuantidade;
@@ -30,6 +32,7 @@ public class PainelCadastrarEntradas extends JPanel {
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelCadastrarEntradas() {
+		setBackground(SystemColor.inactiveCaptionBorder);
 		p = new ProdutoDAO();
 		en = new EntradaDAO();
 		inicializar();
@@ -38,10 +41,14 @@ public class PainelCadastrarEntradas extends JPanel {
 	}
 
 	public void inicializar() {
+		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);//cores do JOptionpane
+		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
+		
 		// instanciando componentes
 		lblTitulo = new JLabel("Cadastrar Entrada");
 		lblQuantidade = new JLabel("Quantidade:");
 		comboBox = new JComboBox();
+		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
 		textQuantidade = new JTextField();
 		btnArmazenar = new JButton("Armazenar");
 
@@ -54,11 +61,11 @@ public class PainelCadastrarEntradas extends JPanel {
 		setLayout(null);
 
 		// define limites de componentes
-		lblTitulo.setBounds(10, 41, 430, 48);
+		lblTitulo.setBounds(10, 11, 580, 48);
 		lblQuantidade.setBounds(30, 145, 148, 30);
-		textQuantidade.setBounds(150, 148, 200, 25);
-		comboBox.setBounds(148, 94, 204, 30);
-		btnArmazenar.setBounds(234, 233, 118, 30);
+		textQuantidade.setBounds(152, 228, 237, 25);
+		comboBox.setBounds(148, 145, 241, 30);
+		btnArmazenar.setBounds(405, 305, 118, 30);
 
 		// add componentes
 		add(lblTitulo);

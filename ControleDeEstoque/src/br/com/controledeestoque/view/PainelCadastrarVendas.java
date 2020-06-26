@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.controledeestoque.controller.BD;
@@ -25,6 +26,9 @@ import br.com.controledeestoque.model.VendaDAO;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.Component;
+import javax.swing.border.LineBorder;
+import java.awt.Point;
+import java.awt.SystemColor;
 
 public class PainelCadastrarVendas extends JPanel {
 	private JLabel lblTitulo;
@@ -51,6 +55,8 @@ public class PainelCadastrarVendas extends JPanel {
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelCadastrarVendas() {
+		setBackground(SystemColor.inactiveCaptionBorder);
+		setLocation(new Point(600, 400));
 		v = new VendaDAO();
 		p = new ProdutoDAO();
 		inicializar();
@@ -59,16 +65,20 @@ public class PainelCadastrarVendas extends JPanel {
 	}
 
 	public void inicializar() {
+		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);
+		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
 		// instanciando componentes
 		bd = new BD();
 		bd.getConnection();
 		lblTitulo = new JLabel("Realizar Venda");
 
 		comboBox = new JComboBox();
+		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
 		comboBox.setEnabled(false);
 		btnAdicionar = new JButton("Adicionar Produto");
 		btnAdicionar.setEnabled(false);
 		tfQuantidade = new JTextField();
+		tfQuantidade.setBackground(SystemColor.window);
 		tfQuantidade.setEnabled(false);
 		btnFinalizar = new JButton("Finalizar");
 		btnNovo = new JButton("Novo");
@@ -77,9 +87,13 @@ public class PainelCadastrarVendas extends JPanel {
 		lblCodigo = new JLabel("");
 		lblDescricaoPedido = new JLabel("N\u00FAmero do Pedido:");
 		table = new JTable();
+		table.setBackground(SystemColor.inactiveCaptionBorder);
 		sp = new JScrollPane(table); // painel de rolagem
+		sp.setBackground(SystemColor.inactiveCaptionBorder);
 		sp.setEnabled(false);
 		lblTotal = new JLabel("");
+		lblTotal.setBackground(Color.WHITE);
+		lblTotal.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTotal.setEnabled(false);
 
 		// ajuste de tamanho e definição do layout
@@ -94,16 +108,16 @@ public class PainelCadastrarVendas extends JPanel {
 		lblTitulo.setBounds(10, 0, 544, 48);
 		lblNewLabel_1.setBounds(41, 65, 46, 14);
 		lblNewLabel.setBounds(41, 94, 110, 14);
-		btnAdicionar.setBounds(375, 45, 160, 55);
-		btnFinalizar.setBounds(375, 332, 160, 35);
+		btnAdicionar.setBounds(430, 59, 160, 55);
+		btnFinalizar.setBounds(430, 338, 160, 35);
 		lblCodigo.setBounds(178, 28, 46, 14);
 		lblDescricaoPedido.setBounds(41, 28, 132, 14);
-		tfQuantidade.setBounds(116, 94, 184, 20);
+		tfQuantidade.setBounds(116, 94, 246, 20);
 		table.setBounds(45, 125, 523, 132);
-		sp.setBounds(41, 135, 494, 146); // TAMANHO E POSIÇÃO
-		comboBox.setBounds(116, 61, 184, 22);
-		lblTotal.setBounds(411, 292, 124, 35);
-		btnNovo.setBounds(138, 332, 160, 35);
+		sp.setBounds(10, 135, 580, 146); // TAMANHO E POSIÇÃO
+		comboBox.setBounds(116, 61, 246, 22);
+		lblTotal.setBounds(466, 292, 124, 35);
+		btnNovo.setBounds(13, 338, 160, 35);
 
 		// add componentes
 		add(comboBox);
