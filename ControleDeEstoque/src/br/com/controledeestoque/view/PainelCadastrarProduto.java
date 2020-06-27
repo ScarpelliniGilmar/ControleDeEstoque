@@ -1,29 +1,31 @@
 package br.com.controledeestoque.view;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import br.com.controledeestoque.model.ProdutoDAO;
-import br.com.controledeestoque.model.Produto;
-import java.awt.SystemColor;
 
 public class PainelCadastrarProduto extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1622601495525275875L;
 	private JTextField textDescricao;
 	private JTextField textValor;
 	private JTextField textQuantidade;
-	private JLabel lblNewLabel;
+	private JLabel lblTitulo;
 	private JLabel lblNome;
 	private JLabel lblValor;
 	private JLabel lblQuantidade;
 	private JButton btnCadastrar;
+	private Design design;
 
 	/**
 	 * Criando a tela e definindo seus componentes
@@ -36,7 +38,8 @@ public class PainelCadastrarProduto extends JPanel {
 
 	public void inicializar() {
 		// instanciando componentes
-		lblNewLabel = new JLabel("Cadastrar Produto");
+		design = new Design();
+		lblTitulo = new JLabel("Cadastrar Produto");
 		lblNome = new JLabel("Nome: ");
 		lblValor = new JLabel("Valor: ");
 		lblQuantidade = new JLabel("Quantidade: ");
@@ -46,16 +49,13 @@ public class PainelCadastrarProduto extends JPanel {
 		btnCadastrar = new JButton("Cadastrar");
 
 		// ajuste de tamanho e definição do layout
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.BLUE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		design.tituloConsultas(lblTitulo);
 		textDescricao.setColumns(10);
 		textValor.setColumns(10);
 		textQuantidade.setColumns(10);
 		setLayout(null);
 
 		// define limites de componentes
-		lblNewLabel.setBounds(10, 41, 430, 48);
 		lblNome.setBounds(30, 103, 100, 14);
 		lblValor.setBounds(30, 143, 100, 14);
 		lblQuantidade.setBounds(30, 187, 100, 14);
@@ -65,7 +65,7 @@ public class PainelCadastrarProduto extends JPanel {
 		btnCadastrar.setBounds(233, 237, 139, 37);
 
 		// add componentes
-		add(lblNewLabel);
+		add(lblTitulo);
 		add(lblNome);
 		add(lblValor);
 		add(lblQuantidade);
@@ -93,13 +93,12 @@ public class PainelCadastrarProduto extends JPanel {
 						JOptionPane.showMessageDialog(btnCadastrar, "Adicione o valor");
 					} else {
 
-						
 						ProdutoDAO p = new ProdutoDAO();
 						p.setNome(nome);
 						p.setValor(Double.parseDouble(valor));
-						p.setQuantidade(Integer.parseInt(quantidade));					
-						p.insert();						
-						
+						p.setQuantidade(Integer.parseInt(quantidade));
+						p.insert();
+
 						JOptionPane.showMessageDialog(btnCadastrar, "Cadastro Concluído!");
 						textDescricao.setText("");
 						textQuantidade.setText("");

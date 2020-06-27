@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
-import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.SystemColor;
@@ -18,6 +17,10 @@ import javax.swing.border.BevelBorder;
  *
  */
 public class PainelInicial extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel lblBemVindo;
 
 	/**
@@ -43,8 +46,9 @@ public class PainelInicial extends JPanel {
 
 		// add componentes
 		add(lblBemVindo);
-		
-		JLabel lblNewLabel = new JLabel("Desenvolvido por Graduandos em An\u00E1lise e Desenvolvimento de Sistemas da FATEC-Indaiatuba");
+
+		JLabel lblNewLabel = new JLabel(
+				"Desenvolvido por Graduandos em An\u00E1lise e Desenvolvimento de Sistemas da FATEC-Indaiatuba");
 		lblNewLabel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNewLabel, BorderLayout.SOUTH);

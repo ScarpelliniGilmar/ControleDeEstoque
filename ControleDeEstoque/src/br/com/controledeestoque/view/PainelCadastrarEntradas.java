@@ -1,30 +1,32 @@
 package br.com.controledeestoque.view;
 
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.Color;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import br.com.controledeestoque.model.EntradaDAO;
 import br.com.controledeestoque.model.ProdutoDAO;
 
-import java.awt.Font;
-import java.awt.SystemColor;
-
 public class PainelCadastrarEntradas extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7414010125084668105L;
 	private JTextField textQuantidade;
 	private JLabel lblTitulo;
 	private JLabel lblQuantidade;
 	private JComboBox<Object> comboBox;
 	private JButton btnArmazenar;
+	private Design design;
 	public ProdutoDAO p;
 	public EntradaDAO en;
 
@@ -41,27 +43,24 @@ public class PainelCadastrarEntradas extends JPanel {
 	}
 
 	public void inicializar() {
-		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);//cores do JOptionpane
-		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
-		
+		design = new Design();
+		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);// cores do JOptionpane
+		UIManager.put("Panel.background", SystemColor.inactiveCaptionBorder);
+
 		// instanciando componentes
 		lblTitulo = new JLabel("Cadastrar Entrada");
 		lblQuantidade = new JLabel("Quantidade:");
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<Object>();
 		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
 		textQuantidade = new JTextField();
 		btnArmazenar = new JButton("Armazenar");
 
 		// ajuste de tamanho e definição do layout
-		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitulo.setForeground(Color.BLUE);
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		design.tituloConsultas(lblTitulo);
 		textQuantidade.setColumns(10);
 		setLayout(null);
 
 		// define limites de componentes
-		lblTitulo.setBounds(10, 11, 580, 48);
 		lblQuantidade.setBounds(30, 145, 148, 30);
 		textQuantidade.setBounds(152, 228, 237, 25);
 		comboBox.setBounds(148, 145, 241, 30);
@@ -74,9 +73,9 @@ public class PainelCadastrarEntradas extends JPanel {
 		add(comboBox);
 		add(btnArmazenar);
 
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Selecione um produto" }));
+		comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] { "Selecione um produto" }));
 		// Adicionando itens ao ComboBox
-		Object[] vetor = p.listarProdutos();
+		Object[] vetor = ProdutoDAO.listarProdutos();
 		for (int i = 0; i < vetor.length; i++) {
 			comboBox.addItem(vetor[i]);
 		}
@@ -87,8 +86,8 @@ public class PainelCadastrarEntradas extends JPanel {
 		btnArmazenar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				 // Recebe o produto e a quantidade e adiciona na tabela entrada no BD				 
+
+				// Recebe o produto e a quantidade e adiciona na tabela entrada no BD
 				String nome = (String) comboBox.getSelectedItem();
 				String quantidade = textQuantidade.getText();
 

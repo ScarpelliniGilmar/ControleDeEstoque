@@ -5,14 +5,16 @@ import java.util.ArrayList;
 
 import br.com.controledeestoque.controller.BD;
 
-public class VendaDAO extends Produto implements DAO { // acessa o banco
+public class VendaDAO extends Venda implements DAO { // acessa o banco
 
 	public BD bd;
+	public static Produto p;
 	public static Venda v;
 	private String sql;
 
 	public VendaDAO() {
 		bd = new BD();
+		p = new Produto();
 		v = new Venda();
 
 	}
@@ -26,8 +28,8 @@ public class VendaDAO extends Produto implements DAO { // acessa o banco
 		bd.getConnection(); // conectando ao banco
 		try {
 			bd.st = bd.con.prepareStatement(sql);
-			bd.st.setString(1, getNome());
-			bd.st.setDouble(2, getValor());
+			bd.st.setString(1, p.getNome());
+			bd.st.setDouble(2, p.getValor());
 			bd.st.setInt(3, getQuantidade());
 			int n = bd.st.executeUpdate();
 			return "Produto inserido com sucesso!";
@@ -68,23 +70,21 @@ public class VendaDAO extends Produto implements DAO { // acessa o banco
 
 	@Override
 	public String delete() {
-		sql = "delete from usuarios where email = ?";
+		sql = "delete from vendas where codigo_venda = " + getCodigoVenda() + " and nome_produto = '" + getNomeProduto()
+				+ "' and quantidade = " + getQuantidade() + " and valor_produto = " + getValor() + "";
 		bd.getConnection(); // conectando ao banco
 		try {
 			bd.st = bd.con.prepareStatement(sql);
-//			bd.st.setString(1, Criptografia.criptografar(getEmail()));
 			int n = bd.st.executeUpdate();
 
 			if (n == 1)
-				return "Usuário exluido com sucesso";
+				return "Venda excluida com sucesso";
 			else
-				return "Usuário não encontrado";
+				return "Venda não encontrado";
 
 		} catch (SQLException erro) {
 
 			return "falha: " + erro;
-		} finally {
-			bd.close();
 		}
 	}
 

@@ -1,8 +1,12 @@
 package br.com.controledeestoque.view;
 
 import java.awt.BorderLayout;
+import java.awt.SystemColor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,56 +17,60 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.controledeestoque.controller.MyModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.SystemColor;
 
 public class PainelConsultarVendas extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5301869103835285250L;
 	private JTextField tfLocalizar;
 	private JTable tbVendas;
 	private DefaultTableModel model; // linhas da tabela (JTable)
 	private JLabel lblConsultar;
-	private JComboBox comboBox;
+	private JComboBox<Object> comboBox;
+	private Design design;
+	private JLabel lblTitulo;
 
 	/**
 	 * Criando a tela e definindo seus componentes
 	 */
 	public PainelConsultarVendas() {
-		setBackground(SystemColor.inactiveCaptionBorder);
 		inicializar();
 		definirEventos();
 	}
 
 	public void inicializar() {
 		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);
-		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
-		
+		UIManager.put("Panel.background", SystemColor.inactiveCaptionBorder);
+
 		// instanciando componentes
+		design = new Design();
 		tfLocalizar = new JTextField();
 		tbVendas = new JTable();
-		tbVendas.setBackground(SystemColor.inactiveCaptionBorder);
 		lblConsultar = new JLabel("Consultar:");
-		comboBox = new JComboBox();
-		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
-		comboBox.setModel(new DefaultComboBoxModel(
+		comboBox = new JComboBox<Object>();
+		comboBox.setModel(new DefaultComboBoxModel<Object>(
 				new String[] { "Selecione o tipo de consulta", "Nome do Produto", "C\u00F3digo da Venda" }));
+		lblTitulo = new JLabel("Consultar Vendas");
 
 		// ajuste de tamanho e definição do layout
 		setLayout(null);
-		tfLocalizar.setColumns(10);
+		setBackground(SystemColor.inactiveCaptionBorder);
 		tbVendas.setEnabled(false);
 
 		// define limites de componentes
-		tfLocalizar.setBounds(190, 76, 196, 25);
-		tbVendas.setBounds(35, 104, 312, 80);
-		lblConsultar.setBounds(103, 73, 77, 30);
-		comboBox.setBounds(190, 29, 196, 30);
+		design.tfConsultas(tfLocalizar);
+		design.lblTituloConsultas(lblConsultar);
+		design.comboBoxConsultas(comboBox);
+		design.tituloConsultas(lblTitulo);
+		design.tabelaConsultas(tbVendas);
 
 		// add componentes
 		add(tfLocalizar);
 		add(tbVendas);
 		add(lblConsultar);
 		add(comboBox);
+		add(lblTitulo);
 
 		carregarTabela();
 
@@ -100,6 +108,5 @@ public class PainelConsultarVendas extends JPanel {
 		JScrollPane sp = new JScrollPane(tbVendas); // painel de rolagem
 		sp.setBounds(10, 148, 624, 208); // TAMANHO E POSIÇÃO
 		add(sp, BorderLayout.CENTER); // CENTRALIZAR
-
 	}
 }

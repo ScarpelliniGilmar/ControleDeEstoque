@@ -1,30 +1,35 @@
 package br.com.controledeestoque.view;
 
+import java.awt.BorderLayout;
+import java.awt.SystemColor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.controledeestoque.controller.MyModel;
 
-import java.awt.BorderLayout;
-import javax.swing.JTable;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.SystemColor;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-
 public class PainelConsultarProdutos extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7119292093260042086L;
 	private JTextField tfLocalizar;
 	private JTable tbProdutos;
 	private DefaultTableModel model; // linhas da tabela (JTable)
 	private JLabel lblConsultar;
-	private JComboBox comboBox;
+	private JComboBox<Object> comboBox;
+	private Design design;
+	private JLabel lblTitulo;
 
 	/**
 	 * Criando a tela e definindo seus componentes
@@ -37,35 +42,35 @@ public class PainelConsultarProdutos extends JPanel {
 
 	public void inicializar() {
 		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);
-		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
+		UIManager.put("Panel.background", SystemColor.inactiveCaptionBorder);
 		// instanciando componentes
 		tfLocalizar = new JTextField();
 		tbProdutos = new JTable();
-		tbProdutos.setBackground(SystemColor.inactiveCaptionBorder);
 		lblConsultar = new JLabel("Consultar:");
-		comboBox = new JComboBox();
-		
-		
-		
+		comboBox = new JComboBox<Object>();
+		design = new Design();
+		lblTitulo = new JLabel("Consultar Produtos");
 
 		// ajuste de tamanho e definição do layout
 		setLayout(null);
-		tfLocalizar.setColumns(10);
 		tbProdutos.setEnabled(false);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selecione o tipo de consulta", "C\u00F3digo do Produto", "Nome do Produto"}));
-		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
+		comboBox.setModel(new DefaultComboBoxModel<Object>(
+				new String[] { "Selecione o tipo de consulta", "C\u00F3digo do Produto", "Nome do Produto" }));
 
 		// define limites de componentes
-		tfLocalizar.setBounds(190, 76, 196, 25);
-		tbProdutos.setBounds(35, 104, 312, 80);
-		lblConsultar.setBounds(103, 73, 77, 30);
-		comboBox.setBounds(190, 29, 196, 30);
-		
+		design.tfConsultas(tfLocalizar);
+		design.lblTituloConsultas(lblConsultar);
+		design.comboBoxConsultas(comboBox);
+		design.tituloConsultas(lblTitulo);
+		design.tabelaConsultas(tbProdutos);
+
 		// add componentes
 		add(tfLocalizar);
 		add(tbProdutos);
 		add(lblConsultar);
 		add(comboBox);
+		add(lblTitulo);
+
 		carregarTabela();
 
 	}
@@ -75,16 +80,16 @@ public class PainelConsultarProdutos extends JPanel {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String selected = (String) comboBox.getSelectedItem();
-				if(selected=="Selecione o tipo de consulta") {
+				if (selected == "Selecione o tipo de consulta") {
 					JOptionPane.showMessageDialog(null, "Selecione o tipo de consulta");
-				} else if(selected=="Código do Produto"){
-						selected ="codigo_produto";
-				}else {
-					selected ="nome_produto";
+				} else if (selected == "Código do Produto") {
+					selected = "codigo_produto";
+				} else {
+					selected = "nome_produto";
 				}
-				
+
 				String sql = "SELECT codigo_produto as 'Código do Produto', nome_produto as 'Nome do Produto', valor_produto \r\n"
-						+ "as 'Valor', quantidade_produto as 'Quantidade' from produtos where "+selected+" like '"
+						+ "as 'Valor', quantidade_produto as 'Quantidade' from produtos where " + selected + " like '"
 						+ tfLocalizar.getText() + "%'"; // selecionar tudo que comece com xx
 				model = MyModel.getModel(Menu.bd, sql);
 				tbProdutos.setModel(model);
@@ -102,7 +107,7 @@ public class PainelConsultarProdutos extends JPanel {
 		tbProdutos.setModel(model);
 		JScrollPane sp = new JScrollPane(tbProdutos); // painel de rolagem
 		sp.setBackground(SystemColor.inactiveCaptionBorder);
-		sp.setBounds(10, 117, 630, 271); // TAMANHO E POSIÇÃO
+		sp.setBounds(10, 148, 624, 208); // TAMANHO E POSIÇÃO
 		add(sp, BorderLayout.CENTER); // CENTRALIZAR
 
 	}
