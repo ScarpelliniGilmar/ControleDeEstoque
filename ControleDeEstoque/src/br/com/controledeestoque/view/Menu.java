@@ -1,28 +1,27 @@
 package br.com.controledeestoque.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import br.com.controledeestoque.controller.BD;
-import java.awt.Font;
-import java.awt.Dimension;
-import javax.swing.SpringLayout;
-import java.awt.Rectangle;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
 
 public class Menu extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1264141579597111802L;
 	public static BD bd; // Declarando BD - objeto único para todo o sistema
 	// Variaveis
 	private JPanel TelaInicial;
@@ -39,6 +38,7 @@ public class Menu extends JFrame {
 	private JMenuItem mntmProdutos;
 	private JMenuItem mntmVendas;
 	private JMenuItem mntmEntradas;
+	private Design design;
 
 	// Inicia o menu direto
 	public static void main(String[] args) {
@@ -73,44 +73,38 @@ public class Menu extends JFrame {
 		// inicializando conexão com BD
 		bd = new BD();
 		bd.getConnection();
+		design = new Design();
 
 		// instanciando componentes
 		menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.inactiveCaptionBorder);
+
 		mnArquivo = new JMenu("Arquivo");
-		mnArquivo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		design.menu(mnArquivo);
 		mnVenda = new JMenu("Venda");
-		mnVenda.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		design.menu(mnVenda);
 		mnCadastrar = new JMenu("Cadastrar");
-		mnCadastrar.setBackground(SystemColor.inactiveCaptionBorder);
-		mnCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		design.menu(mnCadastrar);
 		mnConsultar = new JMenu("Consultar");
-		mnConsultar.setBackground(SystemColor.inactiveCaptionBorder);
-		mnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		design.menu(mnConsultar);
 		mntmInicial = new JMenuItem("Tela Inicial");
-		mntmInicial.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmInicial.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmInicial);
 		mntmSair = new JMenuItem("Sair");
-		mntmSair.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmSair.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmSair);
+
 		mntmRealizarVenda = new JMenuItem("Realizar Venda");
-		mntmRealizarVenda.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmRealizarVenda.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmRealizarVenda);
 		mntmProduto = new JMenuItem("Produto");
-		mntmProduto.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmProduto.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmProduto);
 		mntmEntrada = new JMenuItem("Entrada");
-		mntmEntrada.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmEntrada.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmEntrada);
 		mntmProdutos = new JMenuItem("Produtos");
-		mntmProdutos.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmProdutos.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmProdutos);
 		mntmVendas = new JMenuItem("Vendas");
-		mntmVendas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmVendas.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmVendas);
 		mntmEntradas = new JMenuItem("Entradas");
-		mntmEntradas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmEntradas.setBackground(SystemColor.inactiveCaptionBorder);
+		design.menuItem(mntmEntradas);
+
 		TelaInicial = new JPanel();
 
 		// ajuste de tamanho e definição do layout
@@ -122,13 +116,13 @@ public class Menu extends JFrame {
 		setResizable(false);// Impede que a tela seje maximizada
 		setType(Type.UTILITY);
 		setPreferredSize(new Dimension(900, 400));
+		setJMenuBar(menuBar);
 
 		// define limites de componentes
 		setBounds(100, 100, 663, 497);
 		setForeground(new Color(0, 102, 153));
 		TelaInicial.setLayout(new GridLayout(1, 0, 0, 0));
 		setLocationRelativeTo(null); // Tela Centralizada
-		
 
 		// add componentes
 		menuBar.add(mnArquivo);
@@ -143,7 +137,6 @@ public class Menu extends JFrame {
 		mnConsultar.add(mntmProdutos);
 		mnConsultar.add(mntmVendas);
 		mnConsultar.add(mntmEntradas);
-		setJMenuBar(menuBar);
 
 	}
 
@@ -227,7 +220,7 @@ public class Menu extends JFrame {
 		});
 
 		// Abrir Menu setando Painel Inicial
-		PainelInicial i = new PainelInicial();		
+		PainelInicial i = new PainelInicial();
 		i.setAlignmentY(0.0f);
 		i.setAlignmentX(0.0f);
 		atualizarPainel(i);

@@ -1,47 +1,49 @@
 package br.com.controledeestoque.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import br.com.controledeestoque.controller.BD;
 import br.com.controledeestoque.controller.MyModel;
 import br.com.controledeestoque.model.ProdutoDAO;
-import br.com.controledeestoque.model.Venda;
 import br.com.controledeestoque.model.VendaDAO;
 
-import java.awt.Font;
-import javax.swing.JScrollPane;
-import java.awt.Component;
-import javax.swing.border.LineBorder;
-import java.awt.Point;
-import java.awt.SystemColor;
-
 public class PainelCadastrarVendas extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5211035452952931179L;
 	private JLabel lblTitulo;
 	private JTable table;
 	private DefaultTableModel model; // linhas da tabela (JTable)
 	private JTextField tfQuantidade;
 	private int codigo;
-	private double subtotal, total;
+	private double subtotal;
 	private JLabel lblCodigo;
 	public static BD bd;
 	public static VendaDAO v;
 	public static ProdutoDAO p;
-	private JComboBox comboBox;
+	private JComboBox<Object> comboBox;
 	private JButton btnAdicionar;
 	private JButton btnFinalizar;
 	private JLabel lblNewLabel;
@@ -50,6 +52,7 @@ public class PainelCadastrarVendas extends JPanel {
 	private JScrollPane sp;
 	private JLabel lblTotal;
 	private JButton btnNovo;
+	private JButton btnExcluir;
 
 	/**
 	 * Criando a tela e definindo seus componentes
@@ -66,17 +69,19 @@ public class PainelCadastrarVendas extends JPanel {
 
 	public void inicializar() {
 		UIManager.getDefaults().put("OptionPane.background", SystemColor.inactiveCaptionBorder);
-		UIManager.put ("Panel.background",  SystemColor.inactiveCaptionBorder);
+		UIManager.put("Panel.background", SystemColor.inactiveCaptionBorder);
 		// instanciando componentes
 		bd = new BD();
 		bd.getConnection();
 		lblTitulo = new JLabel("Realizar Venda");
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<Object>();
 		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
 		comboBox.setEnabled(false);
 		btnAdicionar = new JButton("Adicionar Produto");
 		btnAdicionar.setEnabled(false);
+		btnExcluir = new JButton("Excluir Produto");
+		btnExcluir.setEnabled(false);
 		tfQuantidade = new JTextField();
 		tfQuantidade.setBackground(SystemColor.window);
 		tfQuantidade.setEnabled(false);
@@ -117,7 +122,8 @@ public class PainelCadastrarVendas extends JPanel {
 		sp.setBounds(10, 135, 580, 146); // TAMANHO E POSIÇÃO
 		comboBox.setBounds(116, 61, 246, 22);
 		lblTotal.setBounds(466, 292, 124, 35);
-		btnNovo.setBounds(13, 338, 160, 35);
+		btnNovo.setBounds(30, 338, 160, 35);
+		btnExcluir.setBounds(30, 292, 160, 42);
 
 		// add componentes
 		add(comboBox);
@@ -132,6 +138,7 @@ public class PainelCadastrarVendas extends JPanel {
 		add(tfQuantidade);
 		add(lblTotal);
 		add(btnNovo);
+		add(btnExcluir);
 
 	}
 
@@ -147,6 +154,7 @@ public class PainelCadastrarVendas extends JPanel {
 				tfQuantidade.setEnabled(true);
 				lblTotal.setEnabled(true);
 				btnAdicionar.setEnabled(true);
+				btnExcluir.setEnabled(true);
 				lblCodigo.setText("" + (VendaDAO.listarUltimoCodigo() + 1));
 				model = MyModel.getModel(bd,
 						"select codigo_venda as 'Código', nome_produto as 'Produto', quantidade as 'Quantidade', valor_produto as 'Valor Unitário' from vendas where codigo_venda ="
@@ -155,7 +163,7 @@ public class PainelCadastrarVendas extends JPanel {
 				table.setModel(model);
 
 				// INICIO DA COMBO BOX
-				comboBox.setModel(new DefaultComboBoxModel(new String[] { "Selecione um produto" }));
+				comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] { "Selecione um produto" }));
 				Object[] vetor = ProdutoDAO.listarProdutos();
 
 				for (int i = 0; i < vetor.length; i++) {
@@ -181,9 +189,9 @@ public class PainelCadastrarVendas extends JPanel {
 						JOptionPane.showMessageDialog(btnAdicionar, "Adicione a quantidade");
 					} else {
 
-						if (v.Vendas(codigo, descricao, quantidade, subtotal) == true) {
+						if (VendaDAO.Vendas(codigo, descricao, quantidade, subtotal) == true) {
 
-							lblTotal.setText("TOTAL R$ " + v.Total(codigo));
+							lblTotal.setText("TOTAL R$ " + VendaDAO.Total(codigo));
 
 							JOptionPane.showMessageDialog(btnAdicionar, "Produto Adicionado!");
 							tfQuantidade.setText("");
@@ -201,6 +209,25 @@ public class PainelCadastrarVendas extends JPanel {
 				listarTabela();
 			}
 
+		});
+
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (table.getSelectedRow() >= 1) {
+
+					v.setCodigoVenda(Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), 0)));
+					v.setNomeProduto((String) table.getValueAt(table.getSelectedRow(), 1));
+					v.setQuantidade(Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), 2)));
+					v.setValor(Double.parseDouble((String) table.getValueAt(table.getSelectedRow(), 3)));
+					v.delete();
+					listarTabela();
+					JOptionPane.showMessageDialog(btnExcluir, "Excluido com sucesso");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+				}
+			}
 		});
 
 		btnFinalizar.addActionListener(new ActionListener() {
