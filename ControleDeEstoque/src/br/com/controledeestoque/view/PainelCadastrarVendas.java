@@ -222,6 +222,7 @@ public class PainelCadastrarVendas extends JPanel {
 					v.setValor(Double.parseDouble((String) table.getValueAt(table.getSelectedRow(), 3)));
 					v.delete();
 					listarTabela();
+					lblTotal.setText("TOTAL R$ " + VendaDAO.Total(codigo));
 					JOptionPane.showMessageDialog(btnExcluir, "Excluido com sucesso");
 
 				} else {
