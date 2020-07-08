@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import br.com.controledeestoque.model.UsuarioDAO;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.SystemColor;
+import java.awt.Window.Type;
 
 /**
  * Tela de Login
@@ -52,6 +54,7 @@ public class Login extends JFrame {
 	 * Criando a tela e definindo seus componentes
 	 */
 	public Login() {
+		setType(Type.UTILITY);
 		inicializar();
 		definirEventos();
 	}
@@ -66,9 +69,7 @@ public class Login extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnEntrar = new JButton("Entrar");
 		contentPane = new JPanel();
-
-		// ajuste de tamanho e definição do layout
-		setType(Type.UTILITY);
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Login"); // seta o titulo		
 		setContentPane(contentPane);
